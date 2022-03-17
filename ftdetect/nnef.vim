@@ -1,2 +1,2 @@
 " NNEF files
-autocmd BufNewFile,BufRead graph.nnef, graph.quant set filetype=nnef
+autocmd BufNewFile,BufRead *.nnef,graph.quant set filetype=nnef

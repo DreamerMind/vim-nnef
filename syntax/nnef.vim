@@ -15,12 +15,7 @@ syn match nnefLineEscape /\\$/ contained
 
 " Basic strings
 syn region nnefString oneline start=/"/ skip=/\\\\\|\\"/ end=/"/ contains=nnefEscape
-" Multi-line basic strings
-syn region nnefString start=/"""/ end=/"""/ contains=nnefEscape,nnefLineEscape
-" Literal strings
 syn region nnefString oneline start=/'/ end=/'/
-" Multi-line literal strings
-syn region nnefString start=/'''/ end=/'''/
 
 syn match nnefInteger /[+-]\=\<[1-9]\(_\=\d\)*\>/ display
 syn match nnefInteger /[+-]\=\<0\>/ display
@@ -34,39 +29,25 @@ syn match nnefFloat /[+-]\=\<\d\(_\=\d\)*\(\.\d\(_\=\d\)*\)\=[eE][+-]\=\d\(_\=\d
 
 syn match nnefBoolean /\<\%(true\|false\)\>/ display
 
-" https://tools.ietf.org/html/rfc3339
-syn match nnefDate /\d\{4\}-\d\{2\}-\d\{2\}/ display
-syn match nnefDate /\d\{2\}:\d\{2\}:\d\{2\}\%(\.\d\+\)\?/ display
-syn match nnefDate /\d\{4\}-\d\{2\}-\d\{2\}[T ]\d\{2\}:\d\{2\}:\d\{2\}\%(\.\d\+\)\?\%(Z\|[+-]\d\{2\}:\d\{2\}\)\?/ display
-
-syn match nnefDotInKey /\v[^.]+\zs\./ contained display
-syn match nnefKey /\v(^|[{,])\s*\zs[[:alnum:]._-]+\ze\s*\=/ contains=nnefDotInKey display
-syn region nnefKeyDq oneline start=/\v(^|[{,])\s*\zs"/ end=/"\ze\s*=/ contains=nnefEscape
-syn region nnefKeySq oneline start=/\v(^|[{,])\s*\zs'/ end=/'\ze\s*=/
-
-syn region nnefTable oneline start=/^\s*\[[^\[]/ end=/\]/ contains=nnefKey,nnefKeyDq,nnefKeySq,nnefDotInKey
-
-syn region nnefTableArray oneline start=/^\s*\[\[/ end=/\]\]/ contains=nnefKey,nnefKeyDq,nnefKeySq,nnefDotInKey
-
-syn region nnefKeyValueArray start=/=\s*\[\zs/ end=/\]/ contains=@nnefValue
-
 syn region nnefArray start=/\[/ end=/\]/ contains=@nnefValue contained
 
-syn cluster nnefValue contains=nnefArray,nnefString,nnefInteger,nnefFloat,nnefBoolean,nnefDate,nnefComment
+syn cluster nnefValue contains=nnefArray,nnefString,nnefInteger,nnefFloat,nnefBoolean,nnefComment
 
-syn keyword nnefTodo TODO FIXME XXX BUG contained
+syn keyword nnefTodo TODO FIXME XXX BUG
+
+syn keyword nnefMainKeyword graph version fragment extension
+syn region nnefMainOps start=/^.\{-}=\zs/ end=/\ze(\|\ze</
+syn keyword nnefType scalar integer string tensor
+syn match nnefArrow /->/
 
 syn match nnefComment /#.*/ contains=@Spell,nnefTodo
 
 hi def link nnefComment Comment
 hi def link nnefTodo Todo
-hi def link nnefTableArray Title
-hi def link nnefTable Title
-hi def link nnefDotInKey Normal
-hi def link nnefKeySq Identifier
-hi def link nnefKeyDq Identifier
-hi def link nnefKey Identifier
-hi def link nnefDate Constant
+hi def link nnefType Type
+hi def link nnefMainKeyword Keyword
+hi def link nnefMainOps Function
+hi def link nnefArrow Keyword
 hi def link nnefBoolean Boolean
 hi def link nnefFloat Float
 hi def link nnefInteger Number
