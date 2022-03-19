@@ -36,7 +36,10 @@ syn cluster nnefValue contains=nnefArray,nnefString,nnefInteger,nnefFloat,nnefBo
 syn keyword nnefTodo TODO FIXME XXX BUG
 
 syn keyword nnefMainKeyword graph version fragment extension
-syn region nnefMainOps start=/^.\{-}=\zs/ end=/\ze(\|\ze</
+
+syn region nnefOpParams start="(" end=")" fold transparent
+syntax match nnefFragment /[a-z]\w*(/he=e-1 nextgroup=nnefOpParams
+
 syn keyword nnefType scalar integer string tensor
 syn match nnefArrow /->/
 
@@ -46,7 +49,7 @@ hi def link nnefComment Comment
 hi def link nnefTodo Todo
 hi def link nnefType Type
 hi def link nnefMainKeyword Keyword
-hi def link nnefMainOps Function
+hi def link nnefFragment Function
 hi def link nnefArrow Keyword
 hi def link nnefBoolean Boolean
 hi def link nnefFloat Float
