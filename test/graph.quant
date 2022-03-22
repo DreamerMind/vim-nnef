@@ -1,0 +1,5 @@
+"input_0": zero_point_linear_quantize(zero_point = 0, scale = 0.003917869180440903, bits = 8, signed = true, symmetric = false);
+"v2_weight": zero_point_linear_quantize(scale = 0.0014780473429709673, zero_point = 0, bits = 8, signed = true, symmetric = false);
+"v2_bias": zero_point_linear_quantize(scale = 0.0014780473429709673, zero_point = 0, bits = 8, signed = true, symmetric = false);
+"v2_conv": zero_point_linear_quantize(scale = 0.012807061895728111, zero_point = 0, bits = 8, signed = true, symmetric = false);
+"output_0": zero_point_linear_quantize(scale = 0.012807061895728111, zero_point = 0, bits = 8, signed = true, symmetric = false);
